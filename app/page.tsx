@@ -46,11 +46,15 @@ export default function Home() {
       }, 3000); // Hide after 3s
     };
 
+    // Attempt auto-fullscreen on load (works in some kiosk browsers)
+    const timer = setTimeout(() => enterFullscreen(), 1000);
+
     window.addEventListener('click', enterFullscreen);
     window.addEventListener('touchstart', enterFullscreen);
     window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
+      clearTimeout(timer);
       window.removeEventListener('click', enterFullscreen);
       window.removeEventListener('touchstart', enterFullscreen);
       window.removeEventListener('mousemove', handleMouseMove);
