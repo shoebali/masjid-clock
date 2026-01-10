@@ -1,5 +1,8 @@
 "use client";
 
+import { Calendar, MoonStar } from "lucide-react";
+import { cn } from "@/lib/utils";
+
 interface DateDisplayProps {
     hijri: string;
     gregorian: string;
@@ -7,29 +10,26 @@ interface DateDisplayProps {
 
 export default function DateDisplay({ hijri, gregorian }: DateDisplayProps) {
     return (
-        <div className="flex flex-col items-end justify-center space-y-1">
-            <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                <div className="text-right">
-                    <div className="text-2xl md:text-3xl xl:text-[4vh] font-bold text-islamic-gold drop-shadow-md font-serif tracking-wide border-b border-islamic-gold/20 pb-1">
+        <div className="flex flex-col md:flex-row items-end md:items-center gap-3">
+            {/* Hijri Date Pill */}
+            <div className="glass px-4 py-2 rounded-xl flex items-center space-x-3 border-l-2 border-islamic-gold shadow-lg">
+                <MoonStar className="w-5 h-5 text-islamic-gold shrink-0" />
+                <div className="flex flex-col items-start leading-none">
+                    <span className="text-lg md:text-xl font-bold text-islamic-gold font-serif">
                         {hijri}
-                    </div>
-                    <div className="text-xs md:text-sm xl:text-[1.5vh] text-sand/60 uppercase tracking-widest font-light mt-1">
+                    </span>
+                    <span className="text-[10px] uppercase tracking-wider text-sand/60">
                         Hijri Date
-                    </div>
+                    </span>
                 </div>
             </div>
 
-            <div className="w-full h-px bg-gradient-to-r from-transparent via-islamic-gold/30 to-transparent my-1"></div>
-
-            <div className="flex items-center justify-end space-x-3">
-                <div className="text-right">
-                    <div className="text-lg md:text-xl xl:text-[3vh] font-bold text-sand/90 drop-shadow-md font-serif">
-                        {gregorian}
-                    </div>
-                    <div className="text-[10px] md:text-xs xl:text-[1.2vh] text-sand/40 uppercase tracking-widest font-light">
-                        Gregorian Date
-                    </div>
-                </div>
+            {/* Gregorian Date Pill */}
+            <div className="flex items-center space-x-2 text-sand/80 px-2 opacity-80">
+                <Calendar className="w-4 h-4 opacity-60 shrink-0" />
+                <span className="text-base md:text-lg font-serif whitespace-nowrap">
+                    {gregorian}
+                </span>
             </div>
         </div>
     );
